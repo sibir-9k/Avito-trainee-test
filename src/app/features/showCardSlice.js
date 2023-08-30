@@ -29,7 +29,6 @@ const showCardSlice = createSlice({
 	initialState,
 	extraReducers: (builder) => {
 		builder.addCase(fetchCurrentGame.pending, (state) => {
-			console.log(999);
 			state.loading = true;
 		});
 		builder.addCase(fetchCurrentGame.fulfilled, (state, action) => {

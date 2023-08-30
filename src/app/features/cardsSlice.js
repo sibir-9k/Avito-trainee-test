@@ -31,12 +31,10 @@ const cardsSlice = createSlice({
 	reducers: {
 		selectedCard: (state, action) => {
 			state.selectedCardId = action.payload;
-			// console.log(state.selectedCardId);
 		},
 	},
 	extraReducers: (builder) => {
 		builder.addCase(fetchCards.pending, (state) => {
-			console.log(999);
 			state.loading = true;
 		});
 		builder.addCase(fetchCards.fulfilled, (state, action) => {
