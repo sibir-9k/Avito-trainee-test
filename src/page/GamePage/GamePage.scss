@@ -17,6 +17,10 @@
 	background-color: #f1f1f1;
 	margin: 0 auto;
 
+	&__left {
+		width: fit-content;
+	}
+
 	.product-image {
 		margin-bottom: 30px;
 	}

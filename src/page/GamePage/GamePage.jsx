@@ -17,7 +17,7 @@ export const GamePage = () => {
 			</Link>
 			<main>
 				<div className="product-card">
-					<div>
+					<div className='product-card__left'>
 						<div className="product-image">
 							<img src={currentGame.thumbnail} alt={currentGame.title} />
 						</div>
