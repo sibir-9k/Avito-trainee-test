@@ -1,24 +1,13 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react'
+import React from 'react';
 import { Select } from 'antd';
-import { useDispatch } from 'react-redux';
-import { fetchNewSortCardList } from '../../app/features/sortCardsSlice';
-import './SearchSortSelect.scss'
 
-export const SearchSortSelect = () => {
-  const dispatch = useDispatch()
-  const [value, setValue] = useState('')
+import './SearchSortSelect.scss';
 
-  useEffect(() => {
-    dispatch(fetchNewSortCardList(value))
-  }, [dispatch, value])
-
-  const handleSelectChange = (selectedValue) => {
-    setValue(selectedValue)
-  }
-
+export const SearchSortSelect = ({ handleChange }) => {
   return (
-    <div className='sorted'>
+    <div className="sorted">
       <span>Отсортировать: </span>
       <Select
         showSearch
@@ -49,8 +38,8 @@ export const SearchSortSelect = () => {
             label: 'По актуальности',
           },
         ]}
-        onChange={handleSelectChange}
+        onChange={handleChange}
       />
     </div>
-  )
-}
+  );
+};

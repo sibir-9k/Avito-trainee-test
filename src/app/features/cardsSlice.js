@@ -7,8 +7,30 @@ const initialState = {
 	selectedCardId: null,
 };
 
-export const fetchCards = createAsyncThunk('cards/fetchCards', async function () {
-	const url = 'https://free-to-play-games-database.p.rapidapi.com/api/games';
+const BASE_URL = 'https://free-to-play-games-database.p.rapidapi.com/api/games';
+
+export const fetchCards = createAsyncThunk('cards/fetchCards', async function (dataUrl) {
+	let urlParams = '';
+
+	switch (dataUrl.urlType) {
+		case 'sort':
+			urlParams = `?sort-by=${dataUrl.sort}`;
+			break;
+		case 'filter':
+			urlParams = `?platform=${dataUrl.filter.platformValue === 'pc' ? 'pc' : 'browser'}&category=${
+				dataUrl.filter.genreValue
+			}`;
+			break;
+		case 'filter-sort':
+			urlParams = `?platform=${dataUrl.filter.platformValue === 'pc' ? 'pc' : 'browser'}&category=${
+				dataUrl.filter.genreValue
+			}&sort-by=${dataUrl.sort}`;
+			break;
+		default:
+			break;
+	}
+
+	const url = BASE_URL + urlParams;
 	const options = {
 		method: 'GET',
 		headers: {

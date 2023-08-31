@@ -1,55 +1,65 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CardList } from '../../components/CardList/CardList';
 import { fetchCards } from '../../app/features/cardsSlice.js';
 import { SearchSortSelect } from '../../UI/SearchSortSelect/SearchSortSelect';
-import { FilterSelect } from '../../UI/FilterSelect/FilterSelect'
-import { fetchNewFilterCardList } from '../../app/features/filterCardsSlice';
-import { fetchNewSortCardList } from '../../app/features/sortCardsSlice';
-import './HomePage.scss'
+import { FilterSelect } from '../../UI/FilterSelect/FilterSelect';
+import './HomePage.scss';
 
 export const HomePage = () => {
-  const dispatch = useDispatch();
-  const games = useSelector((state) => state.cards.dataGames);
-  const sortDataGames = useSelector(state => state.sortCard.updateListGames)
-  const filterDataGames = useSelector(state => state.filterCard.updateListGames)
+	const dispatch = useDispatch();
+	const games = useSelector((state) => state.cards.dataGames);
+	const [value, setValue] = useState('');
+	const [platformValue, setPlatformValue] = useState('');
+	const [genreValue, setGenreValue] = useState('');
+	let isFirstRender = useRef(true);
 
-  useEffect(() => {
-    dispatch(fetchCards());
-  }, [dispatch]);
+	const getData = (urlType) => {
+		const dataURL = {
+			urlType,
+			sort: value,
+			filter: {
+				platformValue,
+				genreValue,
+			},
+		};
+		dispatch(fetchCards(dataURL));
+	};
 
+	useEffect(() => {
+		if (isFirstRender) {
+			getData();
+			isFirstRender.current = false;
+			return;
+		}
+		if (platformValue && genreValue) {
+			getData('filter-sort');
+			return;
+		}
+		getData('sort');
+	}, [value]);
 
-  const getData = () => {
-    if (sortDataGames?.length > 0) {
-      return sortDataGames;
-    } else if (filterDataGames?.length > 0) {
-      return filterDataGames;
-    } else {
-      return games;
-    }
-  };
+	const handlePress = () => {
+		if (value) {
+			getData('filter-sort');
+			return;
+		}
+		getData('filter');
+	};
 
-  useEffect(() => {
-    if (!sortDataGames && !filterDataGames) {
-      dispatch(fetchNewSortCardList());
-      dispatch(fetchNewFilterCardList());
-    }
-  }, [dispatch, sortDataGames, filterDataGames]);
-
-  return (
-    <main>
-      <SearchSortSelect></SearchSortSelect>
-      <FilterSelect></FilterSelect>
-      <div className='card-list'>
-        {games.loading && <div>Loading...</div>}
-        {!games.loading && games.error ? (
-          <div>Error: {games.error}</div>
-        ) : null}
-        {!games.loading && games.length ? (
-          <CardList data={getData()} />
-        ) : null}
-      </div>
-    </main>
-  );
+	return (
+		<main>
+			<SearchSortSelect handleChange={setValue} />
+			<FilterSelect handleChange={handlePress} platform={setPlatformValue} genre={setGenreValue} />
+			<div className="card-list">
+				{games.loading && <div>Loading...</div>}
+				{!games.loading && games.error ? <div>Error: {games.error}</div> : null}
+				{!games.loading && games.length ? (
+					<CardList data={games} />
+				) : (
+					<h1>Sorry, not found this games ....</h1>
+				)}
+			</div>
+		</main>
+	);
 };
-
