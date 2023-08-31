@@ -1,8 +1,57 @@
-# React + Vite
+# Avito-Frontend-Trainee
+## [Test Demo Live](https://avito-trainee-test.vercel.app/)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Разработано с помощью :
+- React 18+
+- Redux / Redux Toolkit
+- Vite
+- React Router v6
+- Ant Design
+- Использован [Free-To-Play Games API](https://www.freetogame.com/api-doc) 
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+### Установка
+Ниже приведены шаги для запуска проекта на вашем компьютере
+1. Скачайте архив с проектом
+2. Установка NPM пакетов
+   ```sh
+   npm install
+   ```
+4. Запуск проекта (dev.)
+   ```js
+   npm start 
+   ```
+5. Сборка проекта
+   ```js
+   npm run build
+   ```
+## Продуктовые требования:
+### Главная страница
+- Показывает игры
+  - Игры можно отфильтровать по платформе и жанру (например, шутер)
+  - Игры можно отсортировать по дате релиза, популярности и тд
+- Каждая игра в списке содержит:
+  - название
+  - дата релиза (в российском формате)
+  - издатель
+  - жанр
+  - картинка
+- По клику на игру происходит переход на страницу игры
+- На загрузку игр показывать индикатор загрузки
+- Если не получилось получить данные, необходимо сообщить пользователю
+### Страница игры
+- Должна содержать (в любом порядке/виде):
+  - название
+  - дата релиза (в российском формате)
+  - издатель
+  - разработчик
+  - жанр
+  - картинка/постер
+  - карусель скриншотов
+  - системные требования
+- На странице должна быть кнопка для возврата к списку игр
+- На загрузку игры показывать индикатор загрузки
+- Если не получилось получить данные, необходимо сообщить пользователю
+
+
