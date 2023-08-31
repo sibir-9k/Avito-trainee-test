@@ -1,6 +1,16 @@
 # Avito-Frontend-Trainee
 ## [Test Demo Live](https://avito-trainee-test.vercel.app/)
 
+### Разработано с помощью :
+- React 18+
+- Redux / Redux Toolkit
+- Vite
+- React Router v6
+- Ant Design
+- Использован [Free-To-Play Games API](https://www.freetogame.com/api-doc) 
+
+
+
 ### Установка
 Ниже приведены шаги для запуска проекта на вашем компьютере
 1. Скачайте архив с проектом
