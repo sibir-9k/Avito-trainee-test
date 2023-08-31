@@ -1,0 +1,16 @@
+.card-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 15px;
+}
+
+@media screen and (max-width: 425px) {
+	.card-list {
+		justify-content: center;
+	}
+}
+@media screen and (max-width: 768px) {
+	.card-list {
+		justify-content: space-evenly;
+	}
+}
