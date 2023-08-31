@@ -4,12 +4,12 @@ import { PageHeader } from '@ant-design/pro-layout';
 import { Divider } from 'antd';
 
 export const Header = () => {
-	return (
-		<nav>
-			<Link to={'/'}>
-				<PageHeader title="Avito Game Store"></PageHeader>
-			</Link>
-			<Divider />
-		</nav>
-	);
+  return (
+    <nav>
+      <Link to={'/'}>
+        <PageHeader title="Avito Game Store"></PageHeader>
+      </Link>
+      <Divider />
+    </nav>
+  );
 };
